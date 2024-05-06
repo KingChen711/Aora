@@ -35,46 +35,44 @@ export default function App() {
   }
 
   return (
-    <>
-      <SafeAreaView className='h-full bg-primary relative'>
-        {isLoading && (
-          <View className='fixed w-full h-full z-10 flex justify-center items-center'>
-            <Image source={images.logo} className='h-[84px] w-[130px]' resizeMode='contain' />
-            <Animated.Image
-              style={[{ transform: [{ rotate: RotatedData }] }]}
-              source={icons.loading}
-              className='h-14 w-14'
-              resizeMode='contain'
-            />
-          </View>
-        )}
+    <SafeAreaView className='h-full bg-primary relative'>
+      {isLoading && (
+        <View className='fixed w-full h-full z-10 flex justify-center items-center'>
+          <Image source={images.logo} className='h-[84px] w-[130px]' resizeMode='contain' />
+          <Animated.Image
+            style={[{ transform: [{ rotate: RotatedData }] }]}
+            source={icons.loading}
+            className='h-14 w-14'
+            resizeMode='contain'
+          />
+        </View>
+      )}
 
-        <ScrollView contentContainerStyle={{ height: '100%' }}>
-          <View className='min-h-[85vh] w-full items-center justify-center px-4'>
-            <Image source={images.logo} className='h-[84px] w-[130px]' resizeMode='contain' />
+      <ScrollView contentContainerStyle={{ height: '100%' }}>
+        <View className='min-h-[85vh] w-full items-center justify-center px-4'>
+          <Image source={images.logo} className='h-[84px] w-[130px]' resizeMode='contain' />
 
-            <Image source={images.cards} className='h-[300px] w-full max-w-[380px]' resizeMode='contain' />
+          <Image source={images.cards} className='h-[300px] w-full max-w-[380px]' resizeMode='contain' />
 
-            <View className='relative mt-5'>
-              <Text className='text-center text-3xl font-bold text-white'>
-                Discover Endless Possibilities with <Text className='text-secondary-200'>Aora</Text>
-              </Text>
+          <View className='relative mt-5'>
+            <Text className='text-center text-3xl font-bold text-white'>
+              Discover Endless Possibilities with <Text className='text-secondary-200'>Aora</Text>
+            </Text>
 
-              {/* <Image
+            {/* <Image
                 source={images.path}
                 className='absolute -bottom-2 -right-8 h-[15px] w-[136px]'
                 resizeMode='contain'
               /> */}
-            </View>
-
-            <Text className='mt-7 text-center font-p-regular text-sm text-gray-100'>
-              Where creative meets innovation: embark on a journey of limitless exploration with Aora
-            </Text>
-
-            <Button onPress={() => router.push('/sign-in')} containerStyles='mt-7 w-full' title='Continue with Email' />
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+
+          <Text className='mt-7 text-center font-p-regular text-sm text-gray-100'>
+            Where creative meets innovation: embark on a journey of limitless exploration with Aora
+          </Text>
+
+          <Button onPress={() => router.push('/sign-in')} containerStyles='mt-7 w-full' title='Continue with Email' />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }

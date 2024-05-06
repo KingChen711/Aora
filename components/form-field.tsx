@@ -7,7 +7,7 @@ type Props = TextInputProps & {
   otherStyles: string
 }
 
-const FormFiled = ({ label, otherStyles, ...props }: Props) => {
+const FormField = ({ label, otherStyles, ...props }: Props) => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
@@ -32,4 +32,4 @@ const FormFiled = ({ label, otherStyles, ...props }: Props) => {
   )
 }
 
-export default FormFiled
+export default FormField

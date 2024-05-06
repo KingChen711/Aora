@@ -11,7 +11,9 @@ type GlobalContextType = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
   user: User | null
   setUser: React.Dispatch<React.SetStateAction<User | null>>
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>
   isLoading: boolean
+  trigger: boolean
 }
 
 export const GlobalContext = createContext<GlobalContextType | null>(null)
@@ -20,6 +22,7 @@ const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [trigger, setTrigger] = useState(false)
 
   useEffect(() => {
     getCurrentUser()
@@ -37,12 +40,8 @@ const GlobalProvider = ({ children }: GlobalProviderProps) => {
       })
   }, [])
 
-  useEffect(() => {
-    console.log({ user })
-  }, [user])
-
   return (
-    <GlobalContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, isLoading }}>
+    <GlobalContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser, isLoading, trigger, setTrigger }}>
       {children}
     </GlobalContext.Provider>
   )

@@ -74,6 +74,13 @@ const TabsLayout = () => {
           )
         }}
       />
+      <Tabs.Screen
+        name='search/[query]'
+        options={{
+          headerShown: false,
+          tabBarButton: () => null
+        }}
+      />
     </Tabs>
   )
 }
