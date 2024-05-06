@@ -1,11 +1,13 @@
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Button from '../../components/button'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FormFiled from '../../components/form-field'
 import { images } from '../../constants'
+// import { register } from '../../api/user'
 import { createUser } from '../../lib/appwrite'
+import { useGlobal } from '../../contexts/global-context'
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState({
@@ -15,15 +17,29 @@ const SignUp = () => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { setUser, setIsLoggedIn } = useGlobal()
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isSubmitting) return
+
+    if (!formValues.username || !formValues.email || !formValues.password) {
+      Alert.alert('Error', 'Please fill in all the field')
+    }
 
     setIsSubmitting(true)
 
-    createUser()
+    try {
+      const result = await createUser(formValues.email, formValues.password, formValues.username)
 
-    setIsSubmitting(false)
+      setUser(result)
+      setIsLoggedIn(true)
+
+      router.replace('/home')
+    } catch (error: any) {
+      Alert.alert('Error', error?.message || 'Some thing went wrong. Try again!')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
